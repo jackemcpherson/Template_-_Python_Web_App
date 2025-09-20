@@ -22,7 +22,7 @@ This repository hosts an opinionated [Copier](https://copier.readthedocs.io/) te
 ├── copier.yml
 ├── pyproject.toml
 ├── src/
-│   └── {{ project_name | lower | replace(' ', '_') }}/
+│   └── {{ package_name }}/
 │       ├── __init__.py
 │       └── main.py
 └── tests/

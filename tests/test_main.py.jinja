@@ -6,7 +6,7 @@ This file contains tests for the primary routes of the web application.
 import httpx
 from fastapi.testclient import TestClient
 
-from {{ project_name | lower | replace(' ', '_') }}.main import app
+from {{ package_name }}.main import app
 
 client = TestClient(app)
 

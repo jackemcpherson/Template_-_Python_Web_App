@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is a Copier template for a FastAPI + FastHTML service. Core configuration lives at the root (`pyproject.toml`, `Makefile`, `Dockerfile`, `.github/workflows/ci.yml`). Application code resides under `src/{{ project_name | lower | replace(' ', '_') }}/`, keeping imports clean when the package is installed. Shared assets such as templates or static files should sit beside application modules inside that package. Tests mirror the runtime layout in `tests/`, and template defaults include `tests/test_main.py` to illustrate the expected structure.
+This repository is a Copier template for a FastAPI + FastHTML service. Core configuration lives at the root (`pyproject.toml`, `Makefile`, `Dockerfile`, `.github/workflows/ci.yml`). Application code resides under `src/{{ package_name }}/`, keeping imports clean when the package is installed. Shared assets such as templates or static files should sit beside application modules inside that package. Tests mirror the runtime layout in `tests/`, and template defaults include `tests/test_main.py` to illustrate the expected structure.
 
 ## Build, Test, and Development Commands
 Run `make install` after generation to create the uv-managed virtual environment and sync dependencies. `make run-dev` launches Uvicorn with reload for local iteration. Quality gates are exposed via `make lint` (ruff format + check), `make test` (pytest with coverage reports in `htmlcov/`), and `make security` (bandit scan). Use `make check-all` before pushing to execute the full suite. Container workflows rely on `make docker-build` and `make docker-run` for parity with deployment.

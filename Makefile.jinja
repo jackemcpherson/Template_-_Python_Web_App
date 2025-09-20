@@ -46,15 +46,15 @@ check-all: lint test security
 # Target to run the FastAPI development server.
 run-dev:
 	@echo ">>> Starting development server at http://127.0.0.1:8000..."
-	uv run uvicorn {{ project_name | lower | replace(' ', '_') }}.main:app --host 127.0.0.1 --port 8000 --reload
+	uv run uvicorn {{ package_name }}.main:app --host 127.0.0.1 --port 8000 --reload
 
 # Target to build the Docker image.
 docker-build:
 	@echo ">>> Building Docker image..."
-	docker build -t {{ project_name | lower | replace(' ', '-') }}:latest .
+	docker build -t {{ project_slug }}:latest .
 	@echo "✅ Docker image built."
 
 # Target to run the application using the Docker image.
 docker-run:
-	@echo ">>> Running application in Docker container..."
-	docker run -p 8000:8000 --rm {{ project_name | lower | replace(' ', '-') }}:latest
+	@echo ">>> Running application in Docker container (detached)..."
+	docker run -d -p 8000:8000 --rm {{ project_slug }}:latest

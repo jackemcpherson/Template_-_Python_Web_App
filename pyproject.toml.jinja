@@ -1,5 +1,5 @@
 [project]
-name = "{{ project_name | lower | replace(' ', '_') }}"
+name = "{{ package_name }}"
 version = "{{ initial_version }}"
 description = "{{ project_description }}"
 authors = [
@@ -25,8 +25,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-username/{{ project_name | lower | replace(' ', '-') }}"
-Repository = "https://github.com/your-username/{{ project_name | lower | replace(' ', '-') }}"
+Homepage = "https://github.com/{{ github_username }}/{{ project_slug }}"
+Repository = "https://github.com/{{ github_username }}/{{ project_slug }}"
 
 [project.optional-dependencies]
 # Development and testing dependencies
@@ -69,7 +69,7 @@ warn_return_any = true
 warn_unused_ignores = true
 show_error_codes = true
 mypy_path = "src"
-packages = ["{{ project_name | lower | replace(' ', '_') }}"]
+packages = ["{{ package_name }}"]
 
 # Exclude test modules from strictest checks if needed.
 [[tool.mypy.overrides]]
@@ -77,7 +77,7 @@ module = "fasthtml.*"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "{{ project_name | lower | replace(' ', '_') }}.main"
+module = "{{ package_name }}.main"
 disable_error_code = ["misc", "no-any-unimported"]
 
 # [[tool.mypy.overrides]]
@@ -92,4 +92,4 @@ confidence = "MEDIUM"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov={{ project_name | lower | replace(' ', '_') }} --cov-report=term-missing --cov-report=html"
+addopts = "--cov={{ package_name }} --cov-report=term-missing --cov-report=html"
