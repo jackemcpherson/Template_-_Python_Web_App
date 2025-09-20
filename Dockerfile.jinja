@@ -46,6 +46,9 @@ COPY --from=builder /opt/venv /opt/venv
 WORKDIR /app
 COPY --from=builder /app/src ./src
 
+# Ensure the app directory is owned by appuser
+RUN chown -R appuser:appgroup /app
+
 # Activate the virtual environment.
 ENV PATH="/opt/venv/bin:$PATH"
 
