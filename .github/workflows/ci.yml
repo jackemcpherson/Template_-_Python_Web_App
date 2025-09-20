@@ -35,6 +35,7 @@ jobs:
             -d author_name="CI Bot" \
             -d author_email="ci@example.com" \
             -d initial_version="0.1.0" \
+            -d github_username="ci-bot" \
             . generated
 
       - name: Install dependencies
