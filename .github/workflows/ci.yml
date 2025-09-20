@@ -30,7 +30,7 @@ jobs:
       - name: Generate project from template
         run: |
           uvx --from copier copier copy --force \
-            -d project_name="Continuous Integration App" \
+            -d package_name="continuous_integration_app" \
             -d project_description="Generated during CI to validate the template." \
             -d author_name="CI Bot" \
             -d author_email="ci@example.com" \
