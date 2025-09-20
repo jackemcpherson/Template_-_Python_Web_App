@@ -1,0 +1,23 @@
+# .dockerignore
+
+# Git files
+.git
+.gitignore
+
+# Docker files
+.dockerignore
+Dockerfile
+
+# Python virtual environment
+.venv
+venv
+
+# Python cache files
+__pycache__
+*.pyc
+
+# Tool-specific cache and report directories
+.mypy_cache
+.pytest_cache
+.ruff_cache
+htmlcov/

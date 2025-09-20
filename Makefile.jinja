@@ -1,0 +1,60 @@
+# Makefile
+
+# Use .PHONY to ensure these targets run even if files with the same name exist.
+.PHONY: help install lint test security check-all run-dev docker-build docker-run
+
+# Default command to show help.
+help:
+	@echo "Available commands:"
+	@echo "  install       - Set up the development environment and install dependencies"
+	@echo "  lint          - Run ruff for formatting and linting"
+	@echo "  test          - Run pytest with coverage"
+	@echo "  security      - Run bandit for security scanning"
+	@echo "  check-all     - Run all checks (lint, test, security)"
+	@echo "  run-dev       - Start the development server with hot-reloading"
+	@echo "  docker-build  - Build the production Docker image"
+	@echo "  docker-run    - Run the application in a Docker container"
+
+# Target to set up the virtual environment and install dependencies using uv.
+install:
+	@echo ">>> Synchronizing dependencies with uv..."
+	uv sync --all-extras
+	@echo "✅ Environment is ready."
+
+# Target to run the linter and formatter.
+lint:
+	@echo ">>> Running ruff formatter and linter..."
+	uv run ruff format .
+	uv run ruff check .
+	@echo "✅ Linting complete."
+
+# Target to run the test suite with coverage.
+test:
+	@echo ">>> Running tests with pytest and coverage..."
+	uv run pytest
+	@echo "✅ Testing complete. See htmlcov/ for detailed report."
+
+# Target to run the security scanner.
+security:
+	@echo ">>> Running bandit security scanner..."
+	uv run bandit -r src
+	@echo "✅ Security scan complete."
+
+# Target to run all quality checks sequentially.
+check-all: lint test security
+
+# Target to run the FastAPI development server.
+run-dev:
+	@echo ">>> Starting development server at http://127.0.0.1:8000..."
+	uv run uvicorn {{ project_name | lower | replace(' ', '_') }}.main:app --host 127.0.0.1 --port 8000 --reload
+
+# Target to build the Docker image.
+docker-build:
+	@echo ">>> Building Docker image..."
+	docker build -t {{ project_name | lower | replace(' ', '-') }}:latest .
+	@echo "✅ Docker image built."
+
+# Target to run the application using the Docker image.
+docker-run:
+	@echo ">>> Running application in Docker container..."
+	docker run -p 8000:8000 --rm {{ project_name | lower | replace(' ', '-') }}:latest

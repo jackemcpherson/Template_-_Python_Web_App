@@ -1,0 +1,85 @@
+{{ project_name }}
+
+{{ project_description }}
+
+## Overview
+
+This project is a modern, production-ready web application scaffolded from an opinionated Copier template. It uses a high-performance technology stack designed for developer productivity and robust performance.
+
+- Backend Framework: FastAPI
+- Frontend Rendering: [FastHTML](https://www.fastht.ml/)
+- Package Management: uv
+- Code Quality: ruff, mypy, bandit
+- Testing: pytest with coverage
+- Containerization: Multi-stage Dockerfile
+- CI/CD: GitHub Actions
+
+## Developer Experience
+
+This project includes a Makefile to streamline common development tasks. See the table below for a list of available commands.
+
+| Command        | Description                                                                     |
+|----------------|---------------------------------------------------------------------------------|
+| make install   | Creates a virtual environment and installs all project dependencies.            |
+| make lint      | Formats the code and runs the linter using ruff.                                |
+| make test      | Executes the test suite with pytest and generates a coverage report.            |
+| make security  | Scans the codebase for security vulnerabilities using bandit.                   |
+| make check-all | Sequentially runs the lint, test, and security checks.                          |
+| make run-dev   | Starts the FastAPI development server with live reloading.                      |
+| make docker-build | Builds the production Docker image for the application.                      |
+| make docker-run   | Runs the application inside a Docker container.                              |
+
+## Getting Started
+
+**Install Dependencies:**
+
+```bash
+make install
+```
+
+**Run the Development Server:**
+
+```bash
+make run-dev
+```
+
+The application will be available at http://127.0.0.1:8000.
+
+**Run Quality Checks:**
+
+```bash
+make check-all
+```
+
+### Developer Experience Quick-Start Guide
+
+To facilitate rapid onboarding, the README includes a summary of the Makefile commands. This table acts as a quick-reference guide, allowing a developer to become productive with the project in minutes.
+
+| Command        | Description                                                                     |
+|----------------|---------------------------------------------------------------------------------|
+| make install   | Creates a virtual environment and installs all project dependencies using uv.   |
+| make lint      | Formats the code and runs the linter using ruff.                                |
+| make test      | Executes the test suite with pytest and generates a coverage report.            |
+| make security  | Scans the codebase for security vulnerabilities using bandit.                   |
+| make check-all | Sequentially runs the lint, test, and security checks.                          |
+| make run-dev   | Starts the FastAPI development server with live reloading.                      |
+| make docker-build | Builds the production Docker image for the application.                      |
+| make docker-run   | Runs the application inside a Docker container.                              |
+
+## Guidance for Use
+
+To generate a new project from this template, install uv and run:
+
+```bash
+uvx copier copy gh:your-username/your-template-repo-name path/to/local-project
+```
+
+After generation, navigate into the new project directory and follow the quick-start guide provided above:
+
+```bash
+cd path/to/local-project
+make install
+make run-dev
+```
+
+This template is designed to be a robust starting point. From here, developers can immediately begin building out their application's features, confident that the underlying foundation is performant, secure, and maintainable.

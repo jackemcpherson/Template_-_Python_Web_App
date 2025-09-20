@@ -1,0 +1,48 @@
+"""Main application module for the {{ project_name }} service.
+
+This module initializes the FastAPI application and defines the primary routes.
+"""
+
+from fasthtml.common import (
+    Div,
+    FT,
+    H1,
+    P,
+    Titled,
+    fast_app,
+    serve,
+)
+
+# Initialize the FastHTML application, which provides both the FastAPI app instance
+# and the route decorator.
+app, rt = fast_app()
+
+
+@rt("/")
+def get() -> FT:
+    """Serve the main index page of the application.
+
+    This route returns a simple "Hello World" message rendered as an HTML page
+    using FastHTML components.
+
+    Returns:
+        A Titled component containing the page's title and body.
+    """
+    return Titled(
+        "{{ project_name }}",  # Sets the <title> tag of the HTML page.
+        Div(  # A container div for the page content.
+            H1("Welcome to {{ project_name }}!"),
+            P("This is a modern web application scaffolded with FastAPI and FastHTML."),
+            P("Powered by uv, ruff, and other great tools."),
+            id="main-content",
+        ),
+    )
+
+
+# The serve() function is part of the FastHTML library and is used to run
+# the application with uvicorn. It's typically called when the script is
+# executed directly. For this template, we rely on the `make run-dev` command
+# which calls uvicorn directly, so a __main__ block is not strictly necessary
+# but is good practice.
+if __name__ == "__main__":
+    serve()

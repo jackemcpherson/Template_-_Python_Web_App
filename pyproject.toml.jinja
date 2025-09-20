@@ -1,0 +1,95 @@
+[project]
+name = "{{ project_name | lower | replace(' ', '_') }}"
+version = "{{ initial_version }}"
+description = "{{ project_description }}"
+authors = [
+    { name = "{{ author_name }}", email = "{{ author_email }}" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: FastAPI",
+]
+# Core application dependencies
+dependencies = [
+    "fastapi>=0.111.0,<0.112.0",
+    "python-fasthtml>=0.0.23",
+    "uvicorn[standard]>=0.30.1,<0.31.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/{{ project_name | lower | replace(' ', '-') }}"
+Repository = "https://github.com/your-username/{{ project_name | lower | replace(' ', '-') }}"
+
+[project.optional-dependencies]
+# Development and testing dependencies
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "bandit",
+    "httpx",
+]
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+extend-exclude = ["docs/"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D104", "D203", "D213", "S101", "I001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.mypy]
+strict = true
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
+mypy_path = "src"
+packages = ["{{ project_name | lower | replace(' ', '_') }}"]
+
+# Exclude test modules from strictest checks if needed.
+[[tool.mypy.overrides]]
+module = "fasthtml.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "{{ project_name | lower | replace(' ', '_') }}.main"
+disable_error_code = ["misc", "no-any-unimported"]
+
+# [[tool.mypy.overrides]]
+# module = "tests.*"
+# allow_untyped_defs = true
+
+[tool.bandit]
+targets = ["src"]
+exclude_dirs = ["tests"]
+level = "MEDIUM"
+confidence = "MEDIUM"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov={{ project_name | lower | replace(' ', '_') }} --cov-report=term-missing --cov-report=html"

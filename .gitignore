@@ -1,0 +1,36 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+env/
+.venv/
+venv/
+
+# Tooling caches and reports
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Environment and editor configs
+.env
+.env.*
+.python-version
+.vscode/
+.idea/
+
+# Project artifacts
+uv.lock
+uv.lock.prod
+
+# OS files
+.DS_Store
+
+# AI assistant directories
+.claude/
+
+# Local data
+*.log

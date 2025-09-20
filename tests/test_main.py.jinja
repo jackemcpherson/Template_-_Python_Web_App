@@ -1,0 +1,23 @@
+"""Test suite for the main application module.
+
+This file contains tests for the primary routes of the web application.
+"""
+
+import httpx
+from fastapi.testclient import TestClient
+
+from {{ project_name | lower | replace(' ', '_') }}.main import app
+
+client = TestClient(app)
+
+
+def test_read_main() -> None:
+    """Test that the main endpoint returns a successful response.
+
+    Verifies that a GET request to the root URL ("/") returns an HTTP 200 OK
+    status code and that the response content includes the expected title.
+    """
+    response = client.get("/")
+    assert response.status_code == httpx.codes.OK
+    assert "<title>{{ project_name }}</title>" in response.text
+    assert "<h1>Welcome to {{ project_name }}!</h1>" in response.text
