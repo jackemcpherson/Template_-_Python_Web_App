@@ -3,6 +3,8 @@
 _exclude:
   - README.md
 
+_templates_suffix: ".jinja"
+
 package_name:
   type: str
   default: "{{ project_name | lower | regex_replace('[^a-z0-9]+', '_') | trim('_') }}"
@@ -17,12 +19,10 @@ project_slug:
 project_name:
   type: str
   help: What is the name of your project?
-  default: "My Awesome App"
 
 project_description:
   type: str
   help: Provide a short description of the project.
-  default: "A modern web application built with FastAPI and FastHTML."
 
 author_name:
   type: str
@@ -40,4 +40,3 @@ initial_version:
 github_username:
   type: str
   help: What is your GitHub username?
-  default: "your-username"
