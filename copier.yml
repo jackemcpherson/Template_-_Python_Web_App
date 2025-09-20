@@ -1,7 +1,7 @@
 # copier.yml
 
 _exclude:
-  - SPEC.md
+  - README.md
 
 # Define the questions to ask the user when generating the project.
 project_name:
