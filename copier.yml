@@ -8,12 +8,12 @@ _templates_suffix: ".jinja"
 package_name:
   type: str
   default: "{{ project_name | lower | regex_replace('[^a-z0-9]+', '_') | trim('_') }}"
-  when: false
+  when: "{{ false }}"
 
 project_slug:
   type: str
   default: "{{ project_name | lower | regex_replace('[^a-z0-9]+', '-') | trim('-') }}"
-  when: false
+  when: "{{ false }}"
 
 # Define the questions to ask the user when generating the project.
 project_name:
