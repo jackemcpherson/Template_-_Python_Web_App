@@ -78,7 +78,7 @@ ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "{{ package_name }}.main"
-disable_error_code = ["misc", "no-any-unimported"]
+disable_error_code = ["misc", "no-any-unimported", "untyped-decorator"]
 
 # [[tool.mypy.overrides]]
 # module = "tests.*"
